@@ -6,12 +6,8 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface ICategoryDal
+    public interface ICategoryDal:IEntityRepository<Category>
     {
-        List<Category> GetAll();
-       // Category GetCategoryById(int id);
-        void Add(Category category);
-        void Update(Category category);
-        void Delete(Category category);
+ 
     }
 }

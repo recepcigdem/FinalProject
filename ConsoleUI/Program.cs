@@ -12,16 +12,16 @@ namespace ConsoleUI
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetAll())
+            foreach (var product in productManager.GetByUnitPrice(40,100))
             {
                 Console.WriteLine(product.ProductName);
             }
 
-            CategoryManager categoryManager = new CategoryManager(new InMemoryCategoryDal());
-            foreach (Category category in categoryManager.GetAll())
-            {
-                Console.WriteLine(category.CategoryName);
-            }
+            //CategoryManager categoryManager = new CategoryManager(new InMemoryCategoryDal());
+            //foreach (Category category in categoryManager.GetAll())
+            //{
+            //    Console.WriteLine(category.CategoryName);
+            //}
         }
     }
 }

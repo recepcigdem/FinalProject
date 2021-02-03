@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,9 +22,15 @@ namespace DataAccess.Concrete.InMemory
             };
         }
 
-        public List<Category> GetAll()
+
+        public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
         {
             return _categories;
+        }
+
+        public Category Get(Expression<Func<Category, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
 
         public void Add(Category category)
