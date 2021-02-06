@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Entities.Abstract;
+using Core.DataAccess;
 using Entities.Concrete;
 
 namespace DataAccess.Abstract

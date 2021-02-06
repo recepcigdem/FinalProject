@@ -5,9 +5,9 @@ using Entities.Concrete;
 
 namespace Business.Abstract
 {
-    public interface ICategoryService
+    public interface ICustomerService
     {
-        List<Category> GetAll();
-        Category GetById(int categoryId);
+        List<Customer> GetAll();
+        Customer GetById(string customerId);
     }
 }
