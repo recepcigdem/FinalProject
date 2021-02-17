@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
+using ValidationException = FluentValidation.ValidationException;
 
 namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
         private IProductDal _productDal;
+
 
         public ProductManager(IProductDal productDal)
         {
@@ -53,12 +60,10 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(true, Messages.ProductListed, _productDal.Get(p => p.ProductId == productId));
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            if (product.ProductName.Length < 2)
-            {
-                return new ErrorResult(Messages.ProductNameInvalid);
-            }
+
             _productDal.Add(product);
 
             return new SuccessResult(Messages.ProductAdded);
