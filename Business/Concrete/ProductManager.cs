@@ -73,11 +73,13 @@ namespace Business.Concrete
             if (result != null)
             {
                 return result;
+
             }
 
             _productDal.Add(product);
 
             return new SuccessResult(Messages.ProductAdded);
+
         }
 
         [ValidationAspect(typeof(ProductValidator))]
@@ -88,11 +90,12 @@ namespace Business.Concrete
             if (result != null)
             {
                 return result;
-            }
 
+            }
             _productDal.Update(product);
 
             return new SuccessResult(Messages.ProductUpdated);
+
 
         }
 
@@ -101,9 +104,7 @@ namespace Business.Concrete
             var result = _productDal.GetAll(p => p.CategoryId == product.CategoryId).Count;
 
             if (result >= 10)
-            {
                 new ErrorResult(Messages.ProductCountOfCategoryError);
-            }
 
             return new SuccessResult();
         }
@@ -113,9 +114,7 @@ namespace Business.Concrete
             var result = _productDal.GetAll(p => p.ProductName == product.ProductName).Any();
 
             if (result)
-            {
                 new ErrorResult(Messages.ProductNameAlreadyExists);
-            }
 
             return new SuccessResult();
         }
@@ -125,9 +124,7 @@ namespace Business.Concrete
             var result = _categoryService.GetAll();
 
             if (result.Data.Count > 15)
-            {
                 new ErrorResult(Messages.CategoryLimitExceded);
-            }
 
             return new SuccessResult();
         }
