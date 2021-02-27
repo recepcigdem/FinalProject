@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -65,6 +66,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(true, Messages.ProductListed, _productDal.Get(p => p.ProductId == productId));
         }
 
+        [SecuredOperation("admin,product.add")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
