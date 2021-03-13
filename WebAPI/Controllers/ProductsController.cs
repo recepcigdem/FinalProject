@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Entities.Concrete;
@@ -23,6 +24,8 @@ namespace WebAPI.Controllers
         [HttpGet("getAll")]
         public IActionResult GetAll()
         {
+            Thread.Sleep(2000);
+
             var result = _productService.GetAll();
             if (result.Success)
             {
