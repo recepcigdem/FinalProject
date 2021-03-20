@@ -67,7 +67,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(true, Messages.ProductListed, _productDal.Get(p => p.ProductId == productId));
         }
 
-        [SecuredOperation("admin,product.add")]
+        //[SecuredOperation("admin,product.add")]
         [ValidationAspect(typeof(ProductValidator))]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
